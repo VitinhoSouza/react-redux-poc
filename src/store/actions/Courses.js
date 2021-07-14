@@ -1,8 +1,11 @@
-export const changeTitle = newTitle => {
+export const changeTitleAndId = (newTitle, newId) => {
     //console.log("Action-ChangeTitle");
     return {
-        type: 'changeTitle',
-        payload: newTitle,
+        type: 'changeTitleAndId',
+        payload: {
+            newTitle,
+            newId,
+        }
     }
 }
 

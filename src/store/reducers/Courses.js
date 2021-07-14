@@ -6,17 +6,13 @@ const initialState = {
 export default function(state = initialState, action){
 
     switch(action.type){
-        case 'changeTitle':
-            //console.log("Reducer-ChangeTitle");
+        case 'changeTitleAndId':
+            //console.log("Reducer-changeTitleAndId");
             return {
                 ...state,
-                title: action.payload
+                title: action.payload.newTitle,
+                id:action.payload.newId
             }
-        /* case NOVO_N2:
-            return {
-                ...state,
-                n2: action.payload
-            } */
         default:
             console.log("Reducer-Default");
             return state;

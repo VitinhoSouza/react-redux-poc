@@ -1,14 +1,13 @@
 import {connect} from 'react-redux';
 import { useForm } from "react-hook-form";
-import  { changeTitle } from '../store/actions/Courses'
+import  { changeTitleAndId } from '../store/actions/Courses'
 
-function Resume ({coursesState,dispatch}){
+function Resume ({coursesState,changeTitleAndId}){
 
     const {register,handleSubmit} = useForm(); 
 
     function toggleTitle(data){
-        //console.log(data);
-        dispatch(changeTitle(data.course));
+        changeTitleAndId(data.course,coursesState.id+1);
     }
 
     return(
@@ -33,13 +32,12 @@ const mapStateToProps = state =>{
 }
 
 //mapeia o actioncreator para o props deste componente //a função action creator já vai pro props do componente
-/* const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
     return {
-        changeTitle(newTitle){
-            const action = changeTitle(newTitle);
-            dispatch(action);
+        changeTitleAndId(newTitle,newId){
+            dispatch(changeTitleAndId(newTitle,newId));
         }
     }
-} */
+}
 
-export default connect (mapStateToProps)(Resume)
+export default connect (mapStateToProps,mapDispatchToProps)(Resume)
