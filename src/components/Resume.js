@@ -1,8 +1,9 @@
 import {connect} from 'react-redux';
 import { useForm } from "react-hook-form";
 import  { changeTitle, increaseId } from '../store/actions/Courses'
+import {addUser} from '../store/actions/Users'
 
-function Resume ({coursesState,changeTitle,increaseId}){
+function Resume ({coursesState,usersState,changeTitle,increaseId,addUser}){
 
     const {register,handleSubmit} = useForm(); 
 
@@ -12,6 +13,10 @@ function Resume ({coursesState,changeTitle,increaseId}){
 
     function toggleId(){
         increaseId(coursesState.id+1);
+    }
+
+    function toggleName(){
+        addUser("João");
     }
 
     return(
@@ -24,7 +29,8 @@ function Resume ({coursesState,changeTitle,increaseId}){
                 <input type="text" placeholder="Digite um curso" {...register('course', { required: true })}></input>
                 <button type="submit" onClick={handleSubmit(toggleTitle)}>Cadastrar</button>
             </form>
-            
+            <button onClick={toggleName}> Mudar nome para João </button>
+            <h1>{usersState.name}</h1>
             
         </div>
     )
@@ -33,6 +39,7 @@ function Resume ({coursesState,changeTitle,increaseId}){
 const mapStateToProps = state =>{
     return {
         coursesState:state.courses,
+        usersState:state.users,
     }
 }
 
@@ -44,6 +51,9 @@ const mapDispatchToProps = dispatch => {
         },
         increaseId(newId){
             dispatch(increaseId(newId));
+        },
+        addUser(newUser){
+            dispatch(addUser(newUser));
         }
     }
 }
