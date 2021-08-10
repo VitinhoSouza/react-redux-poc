@@ -1,13 +1,17 @@
 import {connect} from 'react-redux';
 import { useForm } from "react-hook-form";
-import  { changeTitleAndId } from '../store/actions/Courses'
+import  { changeTitle, increaseId } from '../store/actions/Courses'
 
-function Resume ({coursesState,changeTitleAndId}){
+function Resume ({coursesState,changeTitle,increaseId}){
 
     const {register,handleSubmit} = useForm(); 
 
     function toggleTitle(data){
-        changeTitleAndId(data.course,coursesState.id+1);
+        changeTitle(data.course);
+    }
+
+    function toggleId(){
+        increaseId(coursesState.id+1);
     }
 
     return(
@@ -15,6 +19,7 @@ function Resume ({coursesState,changeTitleAndId}){
             {console.log(coursesState)}
             <h1>{coursesState.id}</h1>
             <h1>{coursesState.title}</h1>
+            <button onClick={toggleId}>Aumentar ID</button>
             <form>
                 <input type="text" placeholder="Digite um curso" {...register('course', { required: true })}></input>
                 <button type="submit" onClick={handleSubmit(toggleTitle)}>Cadastrar</button>
@@ -34,8 +39,11 @@ const mapStateToProps = state =>{
 //mapeia o actioncreator para o props deste componente //a função action creator já vai pro props do componente
 const mapDispatchToProps = dispatch => {
     return {
-        changeTitleAndId(newTitle,newId){
-            dispatch(changeTitleAndId(newTitle,newId));
+        changeTitle(newTitle){
+            dispatch(changeTitle(newTitle));
+        },
+        increaseId(newId){
+            dispatch(increaseId(newId));
         }
     }
 }
