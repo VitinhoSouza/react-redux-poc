@@ -1,5 +1,5 @@
 const initialState = {
-    name : "José",
+    names: ["José", "Manoel"],
 }
 
 export default function(state = initialState, action){
@@ -8,7 +8,7 @@ export default function(state = initialState, action){
         case 'addUser':
             return {
                 ...state,
-                name: action.payload.newUser
+                names: action.payload.newUsers
             }
 
         default:

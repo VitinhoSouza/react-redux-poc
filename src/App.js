@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <Resume></Resume>
-      {/* <Other></Other> */}
+      <Other></Other>
     </div>
   );
 }

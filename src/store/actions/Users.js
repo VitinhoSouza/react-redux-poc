@@ -1,9 +1,9 @@
-export const addUser = (newUser) => {
+export const addUser = (newUsers) => {
     //console.log("Action-ChangeTitle");
     return {
         type: 'addUser',
         payload: {
-            newUser,
+            newUsers,
         }
     }
 }

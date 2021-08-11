@@ -1,13 +1,18 @@
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 
-function Other ({coursesState}){
+function Other (){
+
+    const coursesState = useSelector(state => state.courses);
+    const usersState = useSelector(state => state.users);
 
     return(
         <div>
-            {console.log(coursesState)}
+            {/* {console.log(coursesState)} */}
             <h1>{coursesState.id}</h1>
             <h1>{coursesState.title}</h1>
-            
+            <h1>{usersState.names.map(name => (
+                name + " - "
+            ))}</h1>
         </div>
     )
 }
